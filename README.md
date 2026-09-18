@@ -15,7 +15,7 @@ JUnit for testing
 Project Structure
 Main.java is the entry point and menu logic
 Login.java has the registration and login logic
-LoginTest.java has the unit tests
+LoginTest.java has the unit tests.
 
 Status
 Part 1 is complete
