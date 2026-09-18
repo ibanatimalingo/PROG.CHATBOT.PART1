@@ -24,4 +24,4 @@ Learning Notes
 This project shows where I am at with Java as a first year student. It covers basic ideas like checking user input, organizing code into classes, and writing tests.
 
 Author
-Ibanati, first year IT Business Systems student at Rosebank College IIE
+Ibanati, first year IT Business Systems student at Rosebank College IIE.
