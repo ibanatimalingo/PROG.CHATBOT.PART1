@@ -19,7 +19,7 @@ public class Login {
         this.lastName = lastName;
     }
 
-    //default constuctor- allows creation an empty login object
+    //this constuctor allows creation an empty login object
     public Login() {
     }
 
@@ -74,7 +74,8 @@ public class Login {
         this.lastName = lastName;
     }
 
-    //
+    //Validates that the username is non-null, contains an underscore, and is 5 characters or fewer
+
     public boolean checkUserName() {
         return username != null && username.contains("_") && username.length() <= 5;
     }
@@ -91,7 +92,7 @@ public class Login {
 
     public boolean checkCellPhoneNumber() {
 
-        String cellPhoneRegex = "^\\+27[0-9]{9}$";//Ai assisted me here
+        String cellPhoneRegex = "^\\+27[0-9]{9}$";//Ai assisted me here,this is so the user can use special character
         return cellPhoneNumber != null && Pattern.matches(cellPhoneRegex, cellPhoneNumber);// null means no value or nothing is assigned, prevents my program from chasing when i try to use a variable that hasnt been given a value
     }
 
