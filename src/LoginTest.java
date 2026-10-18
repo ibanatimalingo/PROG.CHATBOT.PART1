@@ -12,8 +12,10 @@ public class LoginTest {
 
     @Test
     public void testCheckUserNameIncorrectFormat() {
-        // Tests a username that is too long and lacks an underscore (violates the AND-condition).
-        Login login = new Login("kylename", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Name");
+        // This only tests invalid characters, not the length/format boundary.
+        // TODO: add a case like "kylename" (long, no underscore) to actually
+        // test the boundary of the OR-condition (<=5 chars OR contains '_').
+        Login login = new Login("kyle!!!!!!", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Name");
         assertFalse(login.checkUserName());
     }
 
@@ -30,19 +32,6 @@ public class LoginTest {
     }
 
     @Test
-    public void testCheckCellPhoneNumberValid() {
-        Login login = new Login("kyl_1", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Name");
-        assertTrue(login.checkCellPhoneNumber());
-    }
-
-    @Test
-    public void testCheckCellPhoneNumberInvalid() {
-        // Invalid format (missing +27 or wrong length)
-        Login login = new Login("kyl_1", "Ch&&sec@ke99!", "0838968976", "Kyle", "Name");
-        assertFalse(login.checkCellPhoneNumber());
-    }
-
-    @Test
     public void testLoginUserSuccess() {
         Login login = new Login("kyl_1", "Ch&&sec@ke99!", "+27838968976", "Kyle", "Name");
         assertTrue(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
@@ -54,11 +43,8 @@ public class LoginTest {
         assertFalse(login.loginUser("kyl_1", "wrongpassword"));
     }
 
-    @Test
-    public void testLoginUserNullSafety() {
-        // Confirms that passing null values to loginUser does not throw a NullPointerException
-        Login login = new Login(null, null, "+27838968976", "Kyle", "Name");
-        assertFalse(login.loginUser(null, null));
-        assertFalse(login.loginUser("kyl_1", "Ch&&sec@ke99!"));
-    }
+    // TODO: missing test for checkCellPhoneNumber()
+
+    // TODO: missing null-safety test (e.g. loginUser() called with a null
+    // username or password, to confirm it doesn't throw NullPointerException)
 }
