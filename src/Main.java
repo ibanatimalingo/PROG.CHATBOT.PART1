@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // fire up the scanner to read what the user types
         Scanner scanner = new Scanner(System.in);
         Login user = registerAndLogin(scanner);
 
@@ -24,7 +23,7 @@ public class Main {
         Message messageSession =
                 new Message("0000000000", 0, "", "");
 
-        // main menu loop
+        // main menu
         while (running) {
             System.out.println("\n1) Send Messages");
             System.out.println("2) Show recently sent messages");
