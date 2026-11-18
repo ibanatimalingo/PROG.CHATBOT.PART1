@@ -23,7 +23,7 @@ public class Main {
         Message messageSession =
                 new Message("0000000000", 0, "", "");
 
-        // main menu loop
+        // main menu
         while (running) {
             System.out.println("\n1) Send Messages");
             System.out.println("2) Show recently sent messages");
