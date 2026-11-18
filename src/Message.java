@@ -164,7 +164,6 @@ public class Message{
             } else {
                 updatedContent = "[" + jsonEntry + "]";
             }
-
             Files.writeString(filePath, updatedContent, StandardCharsets.UTF_8,
                     StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
             return true;
@@ -172,7 +171,6 @@ public class Message{
             return false;
         }
     }
-
     // standard getters because private fields need to be accessed
     public String getMessageId() { return messageID; }
     public String getMessageID() { return messageID; }

@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        // fire up the scanner to read what the user types
         Scanner scanner = new Scanner(System.in);
         Login user = registerAndLogin(scanner);
 
@@ -28,7 +27,8 @@ public class Main {
         while (running) {
             System.out.println("\n1) Send Messages");
             System.out.println("2) Show recently sent messages");
-            System.out.println("3) Quit");
+            System.out.println("3) Stored Messages");
+            System.out.println("4) Quit");
             System.out.print("Choose an option: ");
 
             String option = scanner.nextLine().trim();
@@ -92,12 +92,60 @@ public class Main {
                     break;
 
                 case "3":
+                    // Stored messages menu
+                    MessageManager manager = new MessageManager();
+                    manager.loadStoredMessagesFromJson();
+
+                    System.out.println("\n--- STORED MESSAGES MENU ---");
+                    System.out.println("a) Display sender & recipient of stored messages");
+                    System.out.println("b) Display the longest stored message");
+                    System.out.println("c) Search for a message ID");
+                    System.out.println("d) Search messages by recipient");
+                    System.out.println("e) Delete message using message hash");
+                    System.out.println("f) Display full message report");
+                    System.out.print("Choose an option (a-f): ");
+
+                    String subChoice = scanner.nextLine().trim().toLowerCase();
+                    switch (subChoice) {
+                        case "a":
+                        case "f":
+                            System.out.println(manager.displayReport());
+                            break;
+                        case "b":
+                            System.out.println("\nLongest Message:");
+                            System.out.println(manager.getLongestStoredMessage());
+                            break;
+                        case "c":
+                            System.out.print("Enter Message ID to search: ");
+                            String searchId = scanner.nextLine().trim();
+                            System.out.println(manager.searchByMessageID(searchId));
+                            break;
+                        case "d":
+                            System.out.print("Enter recipient cell number (+27...): ");
+                            String searchRec = scanner.nextLine().trim();
+                            System.out.println("Messages: " + manager.searchByRecipient(searchRec));
+                            break;
+                        case "e":
+                            System.out.print("Enter Message Hash to delete (e.g. 00:2:WHEREYOU): ");
+                            String delHash = scanner.nextLine().trim();
+                            if (manager.deleteByMessageHash(delHash)) {
+                                System.out.println("Message: \"" + delHash + "\" successfully deleted.");
+                            } else {
+                                System.out.println("Message hash not found.");
+                            }
+                            break;
+                        default:
+                            System.out.println("Invalid sub-menu option.");
+                    }
+                    break;
+
+                case "4":
                     // break out of the while loop to exit
                     running = false;
                     break;
 
                 default:
-                    System.out.println("Please choose 1, 2, or 3.");
+                    System.out.println("Please choose 1, 2, 3, or 4.");
             }
         }
 
@@ -105,8 +153,6 @@ public class Main {
             System.out.println("Total messages sent: "
                     + messageSession.returnTotalMessagess());
         }
-
-        scanner.close();
     }
 
     // handles user registration and login flow
