@@ -1,4 +1,4 @@
-Programming 1 POE Part 1 Registration and Login System
+Programming 1 POE Registration and Login System
 
 About This Project
 This is Part 1 of my Portfolio of Evidence project for Programming 1, built in Java. It is a user registration and login system. I made this as part of my first year studies in IT Business Systems at Rosebank College IIE.
